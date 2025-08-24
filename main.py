@@ -1,6 +1,8 @@
 import os
 import requests
 from openai import OpenAI
+import random
+import time
 
 # Load secrets from GitHub Actions
 ACCESS_TOKEN = os.getenv("LINKEDIN_ACCESS_TOKEN")
@@ -45,6 +47,11 @@ def post_to_linkedin(text):
     print("LinkedIn Response:", response.json())
 
 if __name__ == "__main__":
+    # Random delay: 0 to 2 hours (0–7200 seconds)
+    delay_seconds = random.randint(0, 7200)
+    print(f"Delaying post by {delay_seconds // 60} minutes ({delay_seconds} seconds) to appear more natural...")
+    time.sleep(delay_seconds)
+
     post_text = generate_simple_post()
     print("Generated Post:\n", post_text)
     post_to_linkedin(post_text)
