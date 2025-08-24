@@ -1,8 +1,6 @@
 import os
 import requests
 from openai import OpenAI
-import random
-import time
 
 # ------------------------------
 # Load secrets from environment
@@ -116,10 +114,7 @@ def post_to_linkedin(text, image_path=None):
 # Main script
 # ------------------------------
 if __name__ == "__main__":
-    # Random delay for natural posting: 0–2 hours
-    delay_seconds = random.randint(0, 500)
-    print(f"Delaying post by {delay_seconds // 60} minutes ({delay_seconds} seconds)...")
-    time.sleep(delay_seconds)
+    print("Posting immediately...")
 
     # Generate post text
     post_text = generate_cyber_post()
@@ -127,6 +122,7 @@ if __name__ == "__main__":
 
     # Generate relevant image
     image_file = generate_image(post_text)
+    print("Image file saved as:", image_file)
 
     # Post to LinkedIn
     post_to_linkedin(post_text, image_path=image_file)
